@@ -38,6 +38,7 @@
       text-align: center;
       padding: 2rem 1rem 1rem;
       background: linear-gradient(to bottom, rgba(255,255,255,0.9), #fff);
+      position: relative;
     }
 
     header img {
@@ -278,6 +279,104 @@
         font-size: 1.5rem;
       }
     }
+
+    .venue-info {
+      text-align: center;
+    }
+
+    .venue-info h3 {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+      color: var(--primary-color);
+    }
+
+    .navigation-links {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+
+    .navi-button {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-decoration: none;
+      color: var(--text-color);
+      padding: 0.5rem;
+      border-radius: 10px;
+      transition: transform 0.2s;
+    }
+
+    .navi-button:hover {
+      transform: translateY(-2px);
+    }
+
+    .navi-button img {
+      width: 40px;
+      height: 40px;
+      margin-bottom: 0.5rem;
+    }
+
+    .map-container {
+      margin: 1.5rem 0;
+    }
+
+    .transport-info {
+      text-align: left;
+      margin-top: 2rem;
+    }
+
+    .transport-section {
+      margin-bottom: 1.5rem;
+    }
+
+    .transport-section h4 {
+      color: var(--primary-color);
+      margin-bottom: 0.5rem;
+    }
+
+    .transport-section ul {
+      list-style: none;
+      padding-left: 1rem;
+      margin: 0;
+    }
+
+    .transport-section li {
+      margin-bottom: 0.3rem;
+      position: relative;
+    }
+
+    .transport-section li::before {
+      content: '•';
+      position: absolute;
+      left: -1rem;
+      color: var(--accent-color);
+    }
+
+    .couple-names {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(255, 255, 255, 0.85);
+      padding: 1rem 2rem;
+      border-radius: 15px;
+      text-align: center;
+      font-family: 'Noto Serif KR', serif;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+
+    .couple-names h1 {
+      margin: 0;
+      font-size: 1.8rem;
+      color: var(--primary-color);
+    }
+
+    .couple-names .heart {
+      color: var(--accent-color);
+      margin: 0 0.5rem;
+    }
   </style>
 </head>
 <body>
@@ -286,6 +385,10 @@
   </audio>
 
   <header class="fade-in">
+    <div class="couple-names">
+      <h1>김상희 <span class="heart">♥</span> 김린지</h1>
+      <p>WEDDING</p>
+    </div>
     <img src="./images/001-MIL00324.jpg" alt="메인 이미지">
     <h1>결혼합니다</h1>
     <p>2025년 5월 11일 오후 3시</p>
@@ -297,13 +400,13 @@
     <div class="couple-info">
       <div class="person">
         <img src="./images/002-MIL00449.jpg" alt="신랑">
-        <h3>홍길동</h3>
+        <h3>김상희</h3>
         <p>홍판서 · 김씨의 장남</p>
       </div>
       <div class="heart">❤️</div>
       <div class="person">
         <img src="./images/003-MIL01195.jpg" alt="신부">
-        <h3>김사랑</h3>
+        <h3>김린지</h3>
         <p>김한량 · 이씨의 장녀</p>
       </div>
     </div>
@@ -348,14 +451,56 @@
 
   <div class="section fade-in">
     <h2>오시는 길</h2>
-    <p>광명역 컨벤션웨딩홀<br>경기도 광명시 광명역로 21 지하1층</p>
-    <a href="https://place.map.kakao.com/23753350" target="_blank" class="map-button">지도 보기</a>
-    <div class="parking">
-      <p>🚗 주차 안내:</p>
-      <ul>
-        <li><a href="https://place.map.kakao.com/1973070715" target="_blank">제1주차장</a></li>
-        <li><a href="https://place.map.kakao.com/1973058351" target="_blank">제2주차장</a></li>
-      </ul>
+    <div class="venue-info">
+      <h3>광명역 컨벤션웨딩홀</h3>
+      <p>경기도 광명시 광명역로 21 지하1층</p>
+      
+      <div class="navigation-links">
+        <a href="nmap://place?lat=37.4164563&lng=126.8845083&name=광명역컨벤션웨딩홀" class="navi-button naver">
+          <img src="https://raw.githubusercontent.com/atti18/wedding/main/images/naver.png" alt="네이버지도">
+          <span>네이버지도</span>
+        </a>
+        <a href="kakaomap://look?p=37.4164563,126.8845083" class="navi-button kakao">
+          <img src="https://raw.githubusercontent.com/atti18/wedding/main/images/kakao.png" alt="카카오내비">
+          <span>카카오내비</span>
+        </a>
+        <a href="tmap://search?name=광명역컨벤션웨딩홀" class="navi-button tmap">
+          <img src="https://raw.githubusercontent.com/atti18/wedding/main/images/tmap.png" alt="티맵">
+          <span>티맵</span>
+        </a>
+      </div>
+
+      <div class="map-container">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3167.5672799176546!2d126.88232847677385!3d37.416456272606666!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357b61e273d88aeb%3A0xb0c8e2332ea2d26a!2z6rSR66qF7Jet7IucIOq0keyepQ!5e0!3m2!1sko!2skr!4v1680583619844!5m2!1sko!2skr" 
+                width="100%" height="250" style="border:0; border-radius: 10px;" allowfullscreen="" loading="lazy"></iframe>
+      </div>
+
+      <div class="transport-info">
+        <div class="transport-section">
+          <h4>🚗 자가용 이용 시</h4>
+          <ul>
+            <li>네비게이션 "광명역 컨벤션웨딩홀" 검색</li>
+            <li>주차: 지하 2층 ~ 지하 4층 (무료)</li>
+          </ul>
+        </div>
+
+        <div class="transport-section">
+          <h4>🚅 KTX/SRT 이용 시</h4>
+          <ul>
+            <li>광명역 하차 후 동편 출구 이용</li>
+            <li>지하 1층 웨딩홀로 이동</li>
+          </ul>
+        </div>
+
+        <div class="transport-section">
+          <h4>🚌 버스 이용 시</h4>
+          <ul>
+            <li>광명역 동편 하차</li>
+            <li>일반버스: 3, 3-1, 12, 17, 75</li>
+            <li>마을버스: 1, 2, 3, 5</li>
+          </ul>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -363,11 +508,11 @@
     <h2>계좌 안내</h2>
     <p>축하의 마음을 전해주실 분들을 위해 계좌번호를 안내드립니다.</p>
     <div class="account-box">
-      신랑측: 농협 123-45-678910 (홍길동)
+      신랑측: 농협 123-45-678910 (김상희)
       <button class="copy-button" onclick="copyToClipboard('123-45-678910')">복사</button>
     </div>
     <div class="account-box">
-      신부측: 국민 987-65-432100 (김사랑)
+      신부측: 국민 987-65-432100 (김린지)
       <button class="copy-button" onclick="copyToClipboard('987-65-432100')">복사</button>
     </div>
   </div>

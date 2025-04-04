@@ -38,6 +38,7 @@
       text-align: center;
       padding: 2rem 1rem 1rem;
       background: linear-gradient(to bottom, rgba(255,255,255,0.9), #fff);
+      position: relative;
     }
 
     header img {
@@ -278,6 +279,30 @@
         font-size: 1.5rem;
       }
     }
+
+    .couple-names {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(255, 255, 255, 0.85);
+      padding: 1rem 2rem;
+      border-radius: 15px;
+      text-align: center;
+      font-family: 'Noto Serif KR', serif;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+
+    .couple-names h1 {
+      margin: 0;
+      font-size: 1.8rem;
+      color: var(--primary-color);
+    }
+
+    .couple-names .heart {
+      color: var(--accent-color);
+      margin: 0 0.5rem;
+    }
   </style>
 </head>
 <body>
@@ -286,9 +311,13 @@
   </audio>
 
   <header class="fade-in">
+    <div class="couple-names">
+      <h1>Sanghee <span class="heart">♥</span> Linji</h1>
+      <p>WEDDING</p>
+    </div>
     <img src="./images/001-MIL00324.jpg" alt="Main Image">
-    <h1>We're Getting Married</h1>
-    <p>May 11th, 2025 at 3:00 PM</p>
+    <h1>Wedding Invitation</h1>
+    <p>May 11, 2025 at 3:00 PM</p>
     <div class="d-day" id="dday"></div>
   </header>
 
@@ -297,14 +326,14 @@
     <div class="couple-info">
       <div class="person">
         <img src="./images/002-MIL00449.jpg" alt="Groom">
-        <h3>Gildong Hong</h3>
-        <p>Son of Mr. & Mrs. Hong</p>
+        <h3>Sanghee Kim</h3>
+        <p>First son of Mr. and Mrs. Kim</p>
       </div>
       <div class="heart">❤️</div>
       <div class="person">
         <img src="./images/003-MIL01195.jpg" alt="Bride">
-        <h3>Sarang Kim</h3>
-        <p>Daughter of Mr. & Mrs. Kim</p>
+        <h3>Linji Kim</h3>
+        <p>First daughter of Mr. and Mrs. Kim</p>
       </div>
     </div>
     <p class="text-center">We cordially invite you to celebrate our wedding.<br>Please join us on our special day.</p>
@@ -363,11 +392,11 @@
     <h2>Gift Registry</h2>
     <p>For those who wish to celebrate with us, here are our account details:</p>
     <div class="account-box">
-      Groom: NH Bank 123-45-678910 (Gildong Hong)
+      Groom: NH Bank 123-45-678910 (Sanghee Kim)
       <button class="copy-button" onclick="copyToClipboard('123-45-678910')">Copy</button>
     </div>
     <div class="account-box">
-      Bride: KB Bank 987-65-432100 (Sarang Kim)
+      Bride: KB Bank 987-65-432100 (Linji Kim)
       <button class="copy-button" onclick="copyToClipboard('987-65-432100')">Copy</button>
     </div>
   </div>
