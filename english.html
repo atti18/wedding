@@ -3,154 +3,537 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>We Are Getting Married</title>
-  <link href="https://fonts.googleapis.com/css2?family=Pretendard&display=swap" rel="stylesheet">
+  <title>We're Getting Married</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
   <style>
+    :root {
+      --primary-color: #7F9ACD;
+      --secondary-color: #F5F7FA;
+      --text-color: #333;
+      --accent-color: #E8C3C3;
+    }
+    
     body {
       margin: 0;
-      font-family: 'Pretendard', sans-serif;
+      font-family: 'Poppins', sans-serif;
       background-color: #fff;
-      color: #333;
+      color: var(--text-color);
       line-height: 1.6;
     }
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
     header {
       text-align: center;
       padding: 2rem 1rem 1rem;
+      background: linear-gradient(to bottom, rgba(255,255,255,0.9), #fff);
     }
+
     header img {
       max-width: 100%;
-      border-radius: 10px;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
     }
-    h1 {
-      font-size: 2rem;
+
+    header img:hover {
+      transform: scale(1.02);
+    }
+
+    h1, h2 {
+      font-family: 'Noto Serif', serif;
       margin: 1rem 0 0.5rem;
     }
-    .section {
-      padding: 1.5rem;
+
+    h1 {
+      font-size: 2.2rem;
+      color: var(--primary-color);
+      margin-top: 2rem;
     }
+
+    h2 {
+      font-size: 1.8rem;
+      position: relative;
+      padding-bottom: 0.5rem;
+    }
+
+    h2::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 50px;
+      height: 2px;
+      background-color: var(--accent-color);
+    }
+
+    .section {
+      padding: 2.5rem 1.5rem;
+      margin: 0.5rem 0;
+      background-color: #fff;
+      border-radius: 15px;
+    }
+
+    .section:nth-child(even) {
+      background-color: var(--secondary-color);
+    }
+
     .swiper {
       width: 100%;
       padding-bottom: 2rem;
     }
-    .swiper-slide img {
-      width: 90%;
-      height: auto;
-      border-radius: 10px;
-      margin: 0 auto;
+
+    .swiper-slide {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 300px;
     }
-    .map-button, .share-button {
+
+    .swiper-slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 15px;
+      margin: 0 auto;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .swiper-slide img:hover {
+      transform: scale(1.05);
+    }
+
+    .button {
       display: inline-block;
       margin-top: 1rem;
       padding: 0.75rem 1.5rem;
-      background: #7F9ACD;
+      background: var(--primary-color);
       color: #fff;
       border-radius: 30px;
       text-decoration: none;
       font-weight: bold;
+      transition: all 0.3s ease;
+      border: none;
+      cursor: pointer;
     }
+
+    .button:hover {
+      background: #6B83B0;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .map-button, .share-button {
+      composes: button;
+    }
+
     .parking {
-      margin-top: 1rem;
+      margin-top: 1.5rem;
+      padding: 1rem;
+      background: var(--secondary-color);
+      border-radius: 10px;
     }
+
+    .timeline {
+      margin-top: 1.5rem;
+      line-height: 2;
+      position: relative;
+    }
+
+    .timeline-item {
+      padding-left: 2rem;
+      position: relative;
+      margin-bottom: 1rem;
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 50%;
+      width: 12px;
+      height: 12px;
+      background: var(--accent-color);
+      border-radius: 50%;
+      transform: translateY(-50%);
+    }
+
+    .account-box {
+      background: var(--secondary-color);
+      padding: 1rem;
+      border-radius: 10px;
+      margin: 0.5rem 0;
+      position: relative;
+    }
+
+    .copy-button {
+      position: absolute;
+      right: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      background: var(--primary-color);
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 0.9rem;
+    }
+
     .message-box {
       width: 100%;
       height: 100px;
       padding: 1rem;
       border-radius: 10px;
-      border: 1px solid #ccc;
+      border: 1px solid #ddd;
       margin-top: 1rem;
       font-size: 1rem;
+      resize: vertical;
+      transition: border-color 0.3s ease;
     }
-    .timeline {
-      margin-top: 1rem;
-      line-height: 2;
+
+    .message-box:focus {
+      outline: none;
+      border-color: var(--primary-color);
+    }
+
+    .couple-info {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      margin: 2rem 0;
+      flex-wrap: wrap;
+      gap: 2rem;
+    }
+
+    .person {
+      text-align: center;
+    }
+
+    .person img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 1rem;
+      border: 3px solid var(--accent-color);
+    }
+
+    .heart {
+      font-size: 2rem;
+      color: var(--accent-color);
+      margin: 0 1rem;
+    }
+
+    .d-day {
+      text-align: center;
+      font-size: 1.2rem;
+      margin: 1rem 0;
+      color: var(--primary-color);
+    }
+
+    #imageModal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.9);
+      z-index: 1000;
+    }
+
+    #modalImage {
+      max-width: 90%;
+      max-height: 90vh;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    @media (max-width: 768px) {
+      .section {
+        padding: 2rem 1rem;
+      }
+      
+      h1 {
+        font-size: 1.8rem;
+      }
+      
+      h2 {
+        font-size: 1.5rem;
+      }
     }
   </style>
 </head>
 <body>
-  <audio autoplay loop>
+  <audio id="bgMusic" autoplay loop preload="auto" playsinline>
     <source src="./music/background.mp3" type="audio/mpeg">
-    Your browser does not support the audio element.
+    Your browser does not support audio playback.
   </audio>
 
-  <header>
-    <img src="./images/001-MIL00324.jpg" alt="cover image">
-    <h1>We Are Getting Married</h1>
-    <p>May 11, 2025</p>
+  <header class="fade-in">
+    <img src="./images/001-MIL00324.jpg" alt="Cover Image">
+    <h1>We're Getting Married</h1>
+    <p>May 11th, 2025</p>
+    <div class="d-day" id="dday"></div>
   </header>
 
-  <div class="section">
+  <div class="section fade-in">
     <h2>Bride & Groom</h2>
-    <p>We warmly invite you to join us and celebrate our wedding day.</p>
+    <div class="couple-info">
+      <div class="person">
+        <img src="./images/002-MIL00449.jpg" alt="Groom">
+        <h3>Gildong Hong</h3>
+        <p>Son of Mr. & Mrs. Hong</p>
+      </div>
+      <div class="heart">❤️</div>
+      <div class="person">
+        <img src="./images/003-MIL01195.jpg" alt="Bride">
+        <h3>Sarang Kim</h3>
+        <p>Daughter of Mr. & Mrs. Kim</p>
+      </div>
+    </div>
+    <p class="text-center">We cordially invite you to celebrate our wedding.<br>Please join us on our special day.</p>
   </div>
 
-  <div class="section">
+  <div class="section fade-in">
+    <h2>Our Story</h2>
+    <div class="timeline">
+      <div class="timeline-item">
+        <strong>May 2023</strong> - First Meeting
+      </div>
+      <div class="timeline-item">
+        <strong>August 2023</strong> - Falling in Love
+      </div>
+      <div class="timeline-item">
+        <strong>December 2024</strong> - The Proposal
+      </div>
+      <div class="timeline-item">
+        <strong>May 2025</strong> - New Beginning
+      </div>
+    </div>
+  </div>
+
+  <div class="section fade-in">
     <h2>Gallery</h2>
     <div class="swiper">
       <div class="swiper-wrapper">
-        <div class="swiper-slide"><img src="./images/002-MIL00449.jpg"></div>
-        <div class="swiper-slide"><img src="./images/003-MIL01195.jpg"></div>
-        <div class="swiper-slide"><img src="./images/004-MIL01244.jpg"></div>
-        <div class="swiper-slide"><img src="./images/005-MIL01333.jpg"></div>
-        <div class="swiper-slide"><img src="./images/006-MIL01407.jpg"></div>
-        <div class="swiper-slide"><img src="./images/007-MIL01771.jpg"></div>
-        <div class="swiper-slide"><img src="./images/008-MIL02021.jpg"></div>
-        <div class="swiper-slide"><img src="./images/009-MIL02881.jpg"></div>
-        <div class="swiper-slide"><img src="./images/010-MIL02905.jpg"></div>
+        <div class="swiper-slide"><img src="./images/002-MIL00449.jpg" onclick="openModal(this.src)"></div>
+        <div class="swiper-slide"><img src="./images/003-MIL01195.jpg" onclick="openModal(this.src)"></div>
+        <div class="swiper-slide"><img src="./images/004-MIL01244.jpg" onclick="openModal(this.src)"></div>
+        <div class="swiper-slide"><img src="./images/005-MIL01333.jpg" onclick="openModal(this.src)"></div>
+        <div class="swiper-slide"><img src="./images/006-MIL01407.jpg" onclick="openModal(this.src)"></div>
+        <div class="swiper-slide"><img src="./images/007-MIL01771.jpg" onclick="openModal(this.src)"></div>
+        <div class="swiper-slide"><img src="./images/008-MIL02021.jpg" onclick="openModal(this.src)"></div>
+        <div class="swiper-slide"><img src="./images/009-MIL02881.jpg" onclick="openModal(this.src)"></div>
+        <div class="swiper-slide"><img src="./images/010-MIL02905.jpg" onclick="openModal(this.src)"></div>
       </div>
       <div class="swiper-pagination"></div>
     </div>
   </div>
 
-  <div class="section">
-    <h2>Wedding Venue</h2>
-    <p>Gwangmyeong Station Convention Wedding Hall<br>21, Gwangmyeongyeok-ro, Gwangmyeong-si, Gyeonggi-do (B1, East side of KTX Gwangmyeong Station)</p>
+  <div class="section fade-in">
+    <h2>Venue</h2>
+    <p>Gwangmyeong Station Convention Wedding Hall<br>B1, 21 Gwangmyeongyeok-ro, Gwangmyeong-si, Gyeonggi-do</p>
     <a href="https://place.map.kakao.com/23753350" target="_blank" class="map-button">View Map</a>
     <div class="parking">
-      <p>🚗 Parking Lots:</p>
+      <p>🚗 Parking Information:</p>
       <ul>
-        <li><a href="https://place.map.kakao.com/1973070715" target="_blank">Parking Lot 1</a></li>
-        <li><a href="https://place.map.kakao.com/1973058351" target="_blank">Parking Lot 2</a></li>
+        <li><a href="https://place.map.kakao.com/1973070715" target="_blank">Parking Lot #1</a></li>
+        <li><a href="https://place.map.kakao.com/1973058351" target="_blank">Parking Lot #2</a></li>
       </ul>
     </div>
   </div>
 
-  <div class="section">
-    <h2>Gift Account</h2>
-    <p>For those who wish to send us a gift, here is our bank account information:</p>
-    <ul>
-      <li>Groom: Nonghyup 123-45-678910 (Hong Gil-dong)</li>
-      <li>Bride: Kookmin 987-65-432100 (Kim Sarang)</li>
-    </ul>
-  </div>
-
-  <div class="section">
+  <div class="section fade-in">
     <h2>Schedule</h2>
     <div class="timeline">
-      ⏰ 13:30 Guest Arrival<br>
-      💐 14:00 Ceremony Begins<br>
-      📸 15:00 Group Photo & Closing<br>
-      🍽️ 15:30 Banquet
+      <div class="timeline-item">⏰ 13:30 Guest Arrival</div>
+      <div class="timeline-item">💐 14:00 Ceremony Begins</div>
+      <div class="timeline-item">📸 15:00 Photo Session</div>
+      <div class="timeline-item">🍽️ 15:30 Reception</div>
     </div>
   </div>
 
-  <div class="section">
-    <h2>Leave a Message</h2>
-    <textarea class="message-box" placeholder="Write your congratulatory message here (demo only)"></textarea>
+  <div class="section fade-in">
+    <h2>Gift Registry</h2>
+    <p>For those who wish to celebrate with us, here are our account details:</p>
+    <div class="account-box">
+      Groom: NH Bank 123-45-678910 (Gildong Hong)
+      <button class="copy-button" onclick="copyToClipboard('123-45-678910')">Copy</button>
+    </div>
+    <div class="account-box">
+      Bride: KB Bank 987-65-432100 (Sarang Kim)
+      <button class="copy-button" onclick="copyToClipboard('987-65-432100')">Copy</button>
+    </div>
   </div>
 
-  <div class="section" style="text-align: center;">
-    <a href="index.html" class="map-button">View Korean Invitation</a>
+  <div class="section fade-in">
+    <h2>Leave a Message</h2>
+    <textarea class="message-box" placeholder="Write your congratulatory message here"></textarea>
+    <button class="button" onclick="saveMessage()">Send Message</button>
+    <div id="messages"></div>
+  </div>
+
+  <div class="section fade-in" style="text-align: center;">
+    <a href="javascript:;" onclick="shareKakao()" class="share-button">Share on KakaoTalk</a>
+  </div>
+
+  <div class="section fade-in" style="text-align: center;">
+    <a href="index.html" class="button">한글 청첩장 보기</a>
+  </div>
+
+  <div id="imageModal" onclick="closeModal()">
+    <img id="modalImage" src="" alt="Enlarged Image">
+  </div>
+
+  <div class="section fade-in" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000; background: rgba(255,255,255,0.9); padding: 10px; border-radius: 50%; cursor: pointer; box-shadow: 0 2px 5px rgba(0,0,0,0.2);" onclick="toggleMusic()">
+    <span id="musicIcon" style="font-size: 24px;">🔇</span>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+  <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
   <script>
+    // D-day counter
+    function updateDday() {
+      const weddingDate = new Date('2025-05-11');
+      const today = new Date();
+      const diff = weddingDate - today;
+      const days = Math.ceil(diff / (1000 * 60 * 60 * 24));
+      document.getElementById('dday').innerText = `D-${days}`;
+    }
+    updateDday();
+
+    // Fade-in animation
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    });
+
+    document.querySelectorAll('.fade-in').forEach((el) => observer.observe(el));
+
+    // Image modal
+    function openModal(src) {
+      document.getElementById('imageModal').style.display = 'block';
+      document.getElementById('modalImage').src = src;
+    }
+
+    function closeModal() {
+      document.getElementById('imageModal').style.display = 'none';
+    }
+
+    // Copy account number
+    function copyToClipboard(text) {
+      navigator.clipboard.writeText(text).then(() => {
+        alert('Account number copied to clipboard.');
+      });
+    }
+
+    // KakaoTalk share
+    Kakao.init('YOUR_KAKAO_APP_KEY');
+    function shareKakao() {
+      Kakao.Link.sendDefault({
+        objectType: 'feed',
+        content: {
+          title: 'We\'re Getting Married 💍',
+          description: 'May 11th, 2025 | Gwangmyeong Station Convention Wedding Hall',
+          imageUrl: location.origin + '/images/001-MIL00324.jpg',
+          link: {
+            mobileWebUrl: location.href,
+            webUrl: location.href
+          }
+        },
+        buttons: [
+          {
+            title: 'View Invitation',
+            link: {
+              mobileWebUrl: location.href,
+              webUrl: location.href
+            }
+          }
+        ]
+      });
+    }
+
+    // Music control
+    let isMusicPlaying = true;  // Set initial value to true
+    const bgMusic = document.getElementById('bgMusic');
+    const musicIcon = document.getElementById('musicIcon');
+
+    // Try to autoplay music on page load
+    window.addEventListener('load', function() {
+      bgMusic.play().then(() => {
+        musicIcon.textContent = '🔊';
+      }).catch(() => {
+        isMusicPlaying = false;
+        musicIcon.textContent = '🔇';
+      });
+    });
+
+    function toggleMusic() {
+      if (isMusicPlaying) {
+        bgMusic.pause();
+        musicIcon.textContent = '🔇';
+      } else {
+        bgMusic.play();
+        musicIcon.textContent = '🔊';
+      }
+      isMusicPlaying = !isMusicPlaying;
+    }
+
+    // Try to play music on first interaction
+    document.body.addEventListener('click', function() {
+      if (!isMusicPlaying) {
+        toggleMusic();
+      }
+    }, { once: true });
+
+    // Gallery swiper
     const swiper = new Swiper('.swiper', {
       loop: true,
       pagination: {
         el: '.swiper-pagination',
       },
+      autoplay: {
+        delay: 3000,
+        disableOnInteraction: false,
+      },
     });
+
+    // Guestbook functionality
+    function saveMessage() {
+      const messageBox = document.querySelector('.message-box');
+      const message = messageBox.value.trim();
+      if (message) {
+        const messagesDiv = document.getElementById('messages');
+        const messageElement = document.createElement('div');
+        messageElement.style.padding = '1rem';
+        messageElement.style.margin = '1rem 0';
+        messageElement.style.backgroundColor = 'var(--secondary-color)';
+        messageElement.style.borderRadius = '10px';
+        messageElement.textContent = message;
+        messagesDiv.prepend(messageElement);
+        messageBox.value = '';
+      }
+    }
   </script>
 </body>
 </html>

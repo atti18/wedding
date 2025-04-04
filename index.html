@@ -94,9 +94,17 @@
       padding-bottom: 2rem;
     }
 
+    .swiper-slide {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 300px;
+    }
+
     .swiper-slide img {
-      width: 90%;
-      height: auto;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
       border-radius: 15px;
       margin: 0 auto;
       box-shadow: 0 4px 15px rgba(0,0,0,0.1);
@@ -273,9 +281,9 @@
   </style>
 </head>
 <body>
-  <audio autoplay loop>
+  <audio id="bgMusic" autoplay loop preload="auto" playsinline>
     <source src="./music/background.mp3" type="audio/mpeg">
-    브라우저가 오디오를 지원하지 않습니다.
+    브라우저가 오디오 재생을 지원하지 않습니다.
   </audio>
 
   <header class="fade-in">
@@ -394,6 +402,10 @@
     <img id="modalImage" src="" alt="확대된 이미지">
   </div>
 
+  <div class="section fade-in" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000; background: rgba(255,255,255,0.9); padding: 10px; border-radius: 50%; cursor: pointer; box-shadow: 0 2px 5px rgba(0,0,0,0.2);" onclick="toggleMusic()">
+    <span id="musicIcon" style="font-size: 24px;">🔇</span>
+  </div>
+
   <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
   <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
   <script>
@@ -489,6 +501,39 @@
         messageBox.value = '';
       }
     }
+
+    // Music control
+    let isMusicPlaying = true;
+    const bgMusic = document.getElementById('bgMusic');
+    const musicIcon = document.getElementById('musicIcon');
+
+    // 페이지 로드 시 음악 자동 재생 시도
+    window.addEventListener('load', function() {
+      bgMusic.play().then(() => {
+        musicIcon.textContent = '🔊';
+      }).catch(() => {
+        isMusicPlaying = false;
+        musicIcon.textContent = '🔇';
+      });
+    });
+
+    function toggleMusic() {
+      if (isMusicPlaying) {
+        bgMusic.pause();
+        musicIcon.textContent = '🔇';
+      } else {
+        bgMusic.play();
+        musicIcon.textContent = '🔊';
+      }
+      isMusicPlaying = !isMusicPlaying;
+    }
+
+    // 사용자 상호작용 시 음악 재생 시도
+    document.body.addEventListener('click', function() {
+      if (!isMusicPlaying) {
+        toggleMusic();
+      }
+    }, { once: true });
   </script>
 </body>
 </html>
