@@ -377,10 +377,53 @@
       color: var(--accent-color);
       margin: 0 0.5rem;
     }
+
+    .audio-control {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.9);
+      border: none;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+    }
+
+    .audio-control:hover {
+      transform: scale(1.1);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    }
+
+    .audio-control i {
+      font-size: 24px;
+      color: var(--primary-color);
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+      100% { transform: scale(1); }
+    }
+
+    .audio-control.playing i {
+      animation: pulse 2s infinite;
+    }
   </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-  <audio autoplay loop>
+  <button class="audio-control" id="audioControl" onclick="toggleAudio()">
+    <i class="fas fa-music"></i>
+  </button>
+
+  <audio id="bgMusic" loop>
     <source src="music/background.mp3" type="audio/mp3">
   </audio>
 
@@ -539,6 +582,50 @@
   <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
   <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
   <script>
+    let audioPlaying = false;
+    const audioBtn = document.getElementById('audioControl');
+    const bgMusic = document.getElementById('bgMusic');
+
+    function toggleAudio() {
+      if (audioPlaying) {
+        bgMusic.pause();
+        audioBtn.classList.remove('playing');
+      } else {
+        bgMusic.play();
+        audioBtn.classList.add('playing');
+      }
+      audioPlaying = !audioPlaying;
+    }
+
+    // 페이지 로드 시 자동 재생 시도
+    document.addEventListener('DOMContentLoaded', function() {
+      bgMusic.volume = 0.5; // 볼륨 50%로 설정
+      
+      // iOS Safari에서의 자동 재생을 위한 처리
+      document.addEventListener('touchstart', function() {
+        if (!audioPlaying) {
+          bgMusic.play()
+            .then(() => {
+              audioPlaying = true;
+              audioBtn.classList.add('playing');
+            })
+            .catch(() => {
+              console.log('자동 재생이 차단되었습니다.');
+            });
+        }
+      }, { once: true });
+
+      // 데스크톱에서의 자동 재생 시도
+      bgMusic.play()
+        .then(() => {
+          audioPlaying = true;
+          audioBtn.classList.add('playing');
+        })
+        .catch(() => {
+          console.log('자동 재생이 차단되었습니다.');
+        });
+    });
+
     // D-day 카운터
     function updateDday() {
       const weddingDate = new Date('2025-05-11');
