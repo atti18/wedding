@@ -135,4 +135,63 @@ function saveMessage() {
     messagesDiv.prepend(messageElement);
     messageBox.value = '';
   }
-} 
+}
+
+// 네이버 지도 초기화
+document.addEventListener('DOMContentLoaded', function() {
+  const mapContainer = document.getElementById('map');
+  if (mapContainer) {
+    const location = new naver.maps.LatLng(37.4164, 126.8843);
+    const mapOptions = {
+      center: location,
+      zoom: 16,
+      zoomControl: true,
+      zoomControlOptions: {
+        position: naver.maps.Position.TOP_RIGHT
+      }
+    };
+    
+    const map = new naver.maps.Map(mapContainer, mapOptions);
+    
+    // 마커 추가
+    const marker = new naver.maps.Marker({
+      position: location,
+      map: map,
+      title: document.documentElement.lang === 'ko' ? '광명역사컨벤션웨딩홀' : 'Gwangmyeong Station Convention Wedding Hall'
+    });
+    
+    // 정보창 추가
+    const contentString = document.documentElement.lang === 'ko' ?
+      '<div style="padding:10px;width:200px;text-align:center;">' +
+      '<h3 style="margin:0 0 10px;color:#7F9ACD;">광명역사컨벤션웨딩홀</h3>' +
+      '<p style="margin:0;">경기도 광명시 광명역로 21 지하1층</p>' +
+      '</div>' :
+      '<div style="padding:10px;width:200px;text-align:center;">' +
+      '<h3 style="margin:0 0 10px;color:#7F9ACD;">Gwangmyeong Station Convention Wedding Hall</h3>' +
+      '<p style="margin:0;">B1, 21 Gwangmyeongyeok-ro, Gwangmyeong-si, Gyeonggi-do</p>' +
+      '</div>';
+
+    const infowindow = new naver.maps.InfoWindow({
+      content: contentString,
+      maxWidth: 250,
+      backgroundColor: "#fff",
+      borderColor: "#7F9ACD",
+      borderWidth: 2,
+      anchorSize: new naver.maps.Size(20, 20),
+      anchorSkew: true,
+      pixelOffset: new naver.maps.Point(0, -10)
+    });
+
+    // 마커 클릭 시 정보창 표시
+    naver.maps.Event.addListener(marker, "click", function() {
+      if (infowindow.getMap()) {
+        infowindow.close();
+      } else {
+        infowindow.open(map, marker);
+      }
+    });
+
+    // 초기에 정보창 표시
+    infowindow.open(map, marker);
+  }
+}); 

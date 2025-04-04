@@ -87,7 +87,24 @@
   <div class="section fade-in">
     <h2>Venue</h2>
     <p>Gwangmyeong Station Convention Wedding Hall<br>B1, 21 Gwangmyeongyeok-ro, Gwangmyeong-si, Gyeonggi-do</p>
-    <a href="https://place.map.kakao.com/23753350" target="_blank" class="map-button">View Map</a>
+    <div class="map-container">
+      <div id="map" style="width:100%;height:400px;"></div>
+    </div>
+
+    <div class="navigation-links">
+      <a href="https://naver.me/5jvAGwOE" class="navi-button" target="_blank">
+        <img src="images/naver-map.png" alt="Naver Map">
+        <span>Naver Map</span>
+      </a>
+      <a href="https://map.kakao.com/link/to/Gwangmyeong Station Convention Wedding Hall,37.4164,126.8843" class="navi-button" target="_blank">
+        <img src="images/kakao-navi.png" alt="Kakao Navi">
+        <span>Kakao Navi</span>
+      </a>
+      <a href="tmap://route?goalname=Gwangmyeong Station Convention Wedding Hall&goalx=126.8843&goaly=37.4164" class="navi-button">
+        <img src="images/t-map.png" alt="T map">
+        <span>T map</span>
+      </a>
+    </div>
     <div class="parking">
       <p>🚗 Parking Information:</p>
       <ul>
@@ -131,6 +148,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
   <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+  <script type="text/javascript" src="https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId=YOUR_NAVER_CLIENT_ID"></script>
   <script src="script.js"></script>
 </body>
 </html>
