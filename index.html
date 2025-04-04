@@ -1,2 +1,188 @@
 <!DOCTYPE html>
 <!-- truncated for brevity -->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>우리 결혼합니다</title>
+  <link href="https://fonts.googleapis.com/css2?family=Pretendard&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"/>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Pretendard', sans-serif;
+      background-color: #fff;
+      color: #333;
+      line-height: 1.6;
+    }
+    header {
+      text-align: center;
+      padding: 2rem 1rem 1rem;
+    }
+    header img {
+      max-width: 100%;
+      border-radius: 10px;
+    }
+    h1 {
+      font-size: 2rem;
+      margin: 1rem 0 0.5rem;
+    }
+    .section {
+      padding: 1.5rem;
+    }
+    .swiper {
+      width: 100%;
+      padding-bottom: 2rem;
+    }
+    .swiper-slide img {
+      width: 90%;
+      height: auto;
+      border-radius: 10px;
+      margin: 0 auto;
+    }
+    .map-button, .share-button {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 0.75rem 1.5rem;
+      background: #7F9ACD;
+      color: #fff;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .parking {
+      margin-top: 1rem;
+    }
+    .message-box {
+      width: 100%;
+      height: 100px;
+      padding: 1rem;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      margin-top: 1rem;
+      font-size: 1rem;
+    }
+    .timeline {
+      margin-top: 1rem;
+      line-height: 2;
+    }
+  </style>
+</head>
+<body>
+  <audio autoplay loop>
+    <source src="./music/background.mp3" type="audio/mpeg">
+    브라우저가 오디오를 지원하지 않습니다.
+  </audio>
+
+  <header>
+    <img src="./images/001-MIL00324.jpg" alt="커버 이미지">
+    <h1>우리가 결혼합니다</h1>
+    <p>2025년 5월 11일</p>
+  </header>
+
+  <div class="section">
+    <h2>신랑 & 신부</h2>
+    <p>소중한 분들을 초대합니다. 함께 축복해 주세요.</p>
+  </div>
+
+  <div class="section">
+    <h2>갤러리</h2>
+    <div class="swiper">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide"><img src="./images/002-MIL00449.jpg"></div>
+        <div class="swiper-slide"><img src="./images/003-MIL01195.jpg"></div>
+        <div class="swiper-slide"><img src="./images/004-MIL01244.jpg"></div>
+        <div class="swiper-slide"><img src="./images/005-MIL01333.jpg"></div>
+        <div class="swiper-slide"><img src="./images/006-MIL01407.jpg"></div>
+        <div class="swiper-slide"><img src="./images/007-MIL01771.jpg"></div>
+        <div class="swiper-slide"><img src="./images/008-MIL02021.jpg"></div>
+        <div class="swiper-slide"><img src="./images/009-MIL02881.jpg"></div>
+        <div class="swiper-slide"><img src="./images/010-MIL02905.jpg"></div>
+      </div>
+      <div class="swiper-pagination"></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>결혼식 장소</h2>
+    <p>광명역사컨벤션웨딩홀<br>경기도 광명시 광명역로 21 (KTX광명역 동편 B1)</p>
+    <a href="https://place.map.kakao.com/23753350" target="_blank" class="map-button">지도 보기</a>
+    <div class="parking">
+      <p>🚗 주차장 안내:</p>
+      <ul>
+        <li><a href="https://place.map.kakao.com/1973070715" target="_blank">제 1주차장</a></li>
+        <li><a href="https://place.map.kakao.com/1973058351" target="_blank">제 2주차장</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>계좌 안내</h2>
+    <p>축하의 마음을 전해주실 분들을 위해 계좌번호를 안내드립니다.</p>
+    <ul>
+      <li>신랑측: 농협 123-45-678910 (홍길동)</li>
+      <li>신부측: 국민 987-65-432100 (김사랑)</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>타임라인</h2>
+    <div class="timeline">
+      ⏰ 13:30 하객 입장<br>
+      💐 14:00 본식 시작<br>
+      📸 15:00 기념촬영 및 폐식<br>
+      🍽️ 15:30 피로연 시작
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>축하 메시지 남기기</h2>
+    <textarea class="message-box" placeholder="축하 메시지를 입력해주세요 (기능은 예시입니다)"></textarea>
+  </div>
+
+  <div class="section" style="text-align: center;">
+    <a href="javascript:;" onclick="shareKakao()" class="share-button">카카오톡으로 공유하기</a>
+  </div>
+
+  <div class="section" style="text-align: center;">
+    <a href="english.html" class="map-button">View English Invitation</a>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+  <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+  <script>
+    Kakao.init('YOUR_KAKAO_APP_KEY');
+    function shareKakao() {
+      Kakao.Link.sendDefault({
+        objectType: 'feed',
+        content: {
+          title: '우리 결혼합니다 💍',
+          description: '2025.05.11 | 광명역사컨벤션웨딩홀',
+          imageUrl: location.origin + '/images/001-MIL00324.jpg',
+          link: {
+            mobileWebUrl: location.href,
+            webUrl: location.href
+          }
+        },
+        buttons: [
+          {
+            title: '청첩장 보기',
+            link: {
+              mobileWebUrl: location.href,
+              webUrl: location.href
+            }
+          }
+        ]
+      });
+    }
+
+    const swiper = new Swiper('.swiper', {
+      loop: true,
+      pagination: {
+        el: '.swiper-pagination',
+      },
+    });
+  </script>
+</body>
+</html>
