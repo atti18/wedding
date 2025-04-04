@@ -281,15 +281,14 @@
   </style>
 </head>
 <body>
-  <audio id="bgMusic" autoplay loop preload="auto" playsinline>
-    <source src="./music/background.mp3" type="audio/mpeg">
-    브라우저가 오디오 재생을 지원하지 않습니다.
+  <audio autoplay loop>
+    <source src="music/background.mp3" type="audio/mp3">
   </audio>
 
   <header class="fade-in">
-    <img src="./images/001-MIL00324.jpg" alt="커버 이미지">
-    <h1>우리가 결혼합니다</h1>
-    <p>2025년 5월 11일</p>
+    <img src="./images/001-MIL00324.jpg" alt="메인 이미지">
+    <h1>결혼합니다</h1>
+    <p>2025년 5월 11일 오후 3시</p>
     <div class="d-day" id="dday"></div>
   </header>
 
@@ -299,34 +298,16 @@
       <div class="person">
         <img src="./images/002-MIL00449.jpg" alt="신랑">
         <h3>홍길동</h3>
-        <p>홍판서의 아들</p>
+        <p>홍판서 · 김씨의 장남</p>
       </div>
       <div class="heart">❤️</div>
       <div class="person">
         <img src="./images/003-MIL01195.jpg" alt="신부">
         <h3>김사랑</h3>
-        <p>김장군의 딸</p>
+        <p>김한량 · 이씨의 장녀</p>
       </div>
     </div>
-    <p class="text-center">소중한 분들을 초대합니다.<br>함께 축복해 주세요.</p>
-  </div>
-
-  <div class="section fade-in">
-    <h2>우리의 이야기</h2>
-    <div class="timeline">
-      <div class="timeline-item">
-        <strong>2023년 5월</strong> - 첫 만남
-      </div>
-      <div class="timeline-item">
-        <strong>2023년 8월</strong> - 연인이 되다
-      </div>
-      <div class="timeline-item">
-        <strong>2024년 12월</strong> - 프로포즈
-      </div>
-      <div class="timeline-item">
-        <strong>2025년 5월</strong> - 새로운 시작
-      </div>
-    </div>
+    <p class="text-center">저희 두 사람이 사랑과 믿음으로 한 가정을 이루게 되었습니다.<br>함께 자리하시어 축복해 주시면 감사하겠습니다.</p>
   </div>
 
   <div class="section fade-in">
@@ -348,25 +329,25 @@
   </div>
 
   <div class="section fade-in">
-    <h2>결혼식 장소</h2>
-    <p>광명역사컨벤션웨딩홀<br>경기도 광명시 광명역로 21 (KTX광명역 동편 B1)</p>
+    <h2>오시는 길</h2>
+    <p>광명역 컨벤션웨딩홀<br>경기도 광명시 광명역로 21 지하1층</p>
     <a href="https://place.map.kakao.com/23753350" target="_blank" class="map-button">지도 보기</a>
     <div class="parking">
-      <p>🚗 주차장 안내:</p>
+      <p>🚗 주차 안내:</p>
       <ul>
-        <li><a href="https://place.map.kakao.com/1973070715" target="_blank">제 1주차장</a></li>
-        <li><a href="https://place.map.kakao.com/1973058351" target="_blank">제 2주차장</a></li>
+        <li><a href="https://place.map.kakao.com/1973070715" target="_blank">제1주차장</a></li>
+        <li><a href="https://place.map.kakao.com/1973058351" target="_blank">제2주차장</a></li>
       </ul>
     </div>
   </div>
 
   <div class="section fade-in">
-    <h2>타임라인</h2>
+    <h2>식순 안내</h2>
     <div class="timeline">
-      <div class="timeline-item">⏰ 13:30 하객 입장</div>
-      <div class="timeline-item">💐 14:00 본식 시작</div>
-      <div class="timeline-item">📸 15:00 기념촬영 및 폐식</div>
-      <div class="timeline-item">🍽️ 15:30 피로연 시작</div>
+      <div class="timeline-item">⏰ 14:30 하객 입장</div>
+      <div class="timeline-item">💐 15:00 결혼식</div>
+      <div class="timeline-item">📸 16:00 기념 촬영</div>
+      <div class="timeline-item">🍽️ 16:30 식사</div>
     </div>
   </div>
 
@@ -400,10 +381,6 @@
 
   <div id="imageModal" onclick="closeModal()">
     <img id="modalImage" src="" alt="확대된 이미지">
-  </div>
-
-  <div class="section fade-in" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000; background: rgba(255,255,255,0.9); padding: 10px; border-radius: 50%; cursor: pointer; box-shadow: 0 2px 5px rgba(0,0,0,0.2);" onclick="toggleMusic()">
-    <span id="musicIcon" style="font-size: 24px;">🔇</span>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
@@ -501,39 +478,6 @@
         messageBox.value = '';
       }
     }
-
-    // Music control
-    let isMusicPlaying = true;
-    const bgMusic = document.getElementById('bgMusic');
-    const musicIcon = document.getElementById('musicIcon');
-
-    // 페이지 로드 시 음악 자동 재생 시도
-    window.addEventListener('load', function() {
-      bgMusic.play().then(() => {
-        musicIcon.textContent = '🔊';
-      }).catch(() => {
-        isMusicPlaying = false;
-        musicIcon.textContent = '🔇';
-      });
-    });
-
-    function toggleMusic() {
-      if (isMusicPlaying) {
-        bgMusic.pause();
-        musicIcon.textContent = '🔇';
-      } else {
-        bgMusic.play();
-        musicIcon.textContent = '🔊';
-      }
-      isMusicPlaying = !isMusicPlaying;
-    }
-
-    // 사용자 상호작용 시 음악 재생 시도
-    document.body.addEventListener('click', function() {
-      if (!isMusicPlaying) {
-        toggleMusic();
-      }
-    }, { once: true });
   </script>
 </body>
 </html>

@@ -281,15 +281,14 @@
   </style>
 </head>
 <body>
-  <audio id="bgMusic" autoplay loop preload="auto" playsinline>
-    <source src="./music/background.mp3" type="audio/mpeg">
-    Your browser does not support audio playback.
+  <audio autoplay loop>
+    <source src="music/background.mp3" type="audio/mp3">
   </audio>
 
   <header class="fade-in">
-    <img src="./images/001-MIL00324.jpg" alt="Cover Image">
+    <img src="./images/001-MIL00324.jpg" alt="Main Image">
     <h1>We're Getting Married</h1>
-    <p>May 11th, 2025</p>
+    <p>May 11th, 2025 at 3:00 PM</p>
     <div class="d-day" id="dday"></div>
   </header>
 
@@ -363,10 +362,10 @@
   <div class="section fade-in">
     <h2>Schedule</h2>
     <div class="timeline">
-      <div class="timeline-item">⏰ 13:30 Guest Arrival</div>
-      <div class="timeline-item">💐 14:00 Ceremony Begins</div>
-      <div class="timeline-item">📸 15:00 Photo Session</div>
-      <div class="timeline-item">🍽️ 15:30 Reception</div>
+      <div class="timeline-item">⏰ 14:30 Guest Arrival</div>
+      <div class="timeline-item">💐 15:00 Ceremony</div>
+      <div class="timeline-item">📸 16:00 Photo Session</div>
+      <div class="timeline-item">🍽️ 16:30 Reception</div>
     </div>
   </div>
 
@@ -400,10 +399,6 @@
 
   <div id="imageModal" onclick="closeModal()">
     <img id="modalImage" src="" alt="Enlarged Image">
-  </div>
-
-  <div class="section fade-in" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000; background: rgba(255,255,255,0.9); padding: 10px; border-radius: 50%; cursor: pointer; box-shadow: 0 2px 5px rgba(0,0,0,0.2);" onclick="toggleMusic()">
-    <span id="musicIcon" style="font-size: 24px;">🔇</span>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
@@ -472,39 +467,6 @@
         ]
       });
     }
-
-    // Music control
-    let isMusicPlaying = true;  // Set initial value to true
-    const bgMusic = document.getElementById('bgMusic');
-    const musicIcon = document.getElementById('musicIcon');
-
-    // Try to autoplay music on page load
-    window.addEventListener('load', function() {
-      bgMusic.play().then(() => {
-        musicIcon.textContent = '🔊';
-      }).catch(() => {
-        isMusicPlaying = false;
-        musicIcon.textContent = '🔇';
-      });
-    });
-
-    function toggleMusic() {
-      if (isMusicPlaying) {
-        bgMusic.pause();
-        musicIcon.textContent = '🔇';
-      } else {
-        bgMusic.play();
-        musicIcon.textContent = '🔊';
-      }
-      isMusicPlaying = !isMusicPlaying;
-    }
-
-    // Try to play music on first interaction
-    document.body.addEventListener('click', function() {
-      if (!isMusicPlaying) {
-        toggleMusic();
-      }
-    }, { once: true });
 
     // Gallery swiper
     const swiper = new Swiper('.swiper', {
