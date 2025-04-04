@@ -260,14 +260,14 @@ h2::after {
 /* 커플 이름 스타일 */
 .couple-names {
   position: absolute;
-  top: 50%;
+  top: 20px;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translateX(-50%);
   background: rgba(255, 255, 255, 0.85);
   padding: 1rem 2rem;
   border-radius: 15px;
   text-align: center;
-  font-family: 'Noto Serif KR', 'Noto Serif', serif;
+  font-family: 'Noto Serif KR', serif;
   box-shadow: 0 4px 15px rgba(0,0,0,0.1);
 }
 
@@ -275,6 +275,12 @@ h2::after {
   margin: 0;
   font-size: 1.8rem;
   color: var(--primary-color);
+}
+
+.couple-names p {
+  margin: 0.5rem 0 0;
+  font-size: 1.2rem;
+  color: var(--accent-color);
 }
 
 .couple-names .heart {
